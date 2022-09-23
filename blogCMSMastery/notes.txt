@@ -1,11 +1,8 @@
 theme
 
 
----package name--- 
-	change to runnerBlog/groupName
-
 ---application properties---
-	commented out stuff
+	make different database?
 
 ---config---
 	do not touch?
