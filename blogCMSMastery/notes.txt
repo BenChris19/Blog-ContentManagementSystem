@@ -81,33 +81,6 @@ theme
 		comments
 		method - names and order
 		variable
-
----dtos---
-	Blogpost
-		tag prompts
-		lombok
-		comments
-	Comment
-		tag prompts
-		lombok
-		comments
-	Hashtag
-		tag prompts
-		lombok
-		comments
-	ImageFolder
-		tag prompts
-		lombok
-		comments
-	Role
-		tag prompts
-		lombok
-		comments
-	User
-		tag prompts
-		lombok
-		comments
-
+		
 ---SQL Scripts---
-	DB
 	Data

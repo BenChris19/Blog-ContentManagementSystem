@@ -2,43 +2,24 @@ package com.sportsblog.blogCMSMastery.dto;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.LocalDateTime;
 import java.util.Objects;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
+@Getter
 public class Hashtag {
     private int hashtagId;
-    @NotBlank(message = "Please enter category name")
-    @Size(max = 30, message= "Invalid category name: Please enter category name between 1-30 characters")
+    @NotBlank(message = "Name cannot be blank")
+    @Size(max = 20, message= "Invalid category name: Please enter category name between 1-20 characters")
     private String name;
-
-    public int getHashtagId() {
-        return hashtagId;
-    }
-
-    public void setHashtagId(int hashtagId) {
-        this.hashtagId = hashtagId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Hashtag)) return false;
-        Hashtag hashtag = (Hashtag) o;
-        return getHashtagId() == hashtag.getHashtagId() &&
-                Objects.equals(getName(), hashtag.getName());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getHashtagId(), getName());
-    }
 
     @Override
     public String toString() {
@@ -47,4 +28,23 @@ public class Hashtag {
                 ", name='" + name + '\'' +
                 '}';
     }
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(hashtagId, name);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Hashtag other = (Hashtag) obj;
+		return hashtagId == other.hashtagId && Objects.equals(name, other.name);
+	}
+    
+    
 }

@@ -1,71 +1,26 @@
 package com.sportsblog.blogCMSMastery.dto;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
+@Getter
 public class Comment {
     private int commentId;
     private LocalDateTime timePosted;
     private String content;
     private User user;
     private Blogpost blogpost;
-
-    public int getCommentId() {
-        return commentId;
-    }
-
-    public void setCommentId(int commentId) {
-        this.commentId = commentId;
-    }
-
-    public LocalDateTime getTimePosted() {
-        return timePosted;
-    }
-
-    public void setTimePosted(LocalDateTime timePosted) {
-        this.timePosted = timePosted;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Blogpost getBlogpost() {
-        return blogpost;
-    }
-
-    public void setBlogpost(Blogpost blogpost) {
-        this.blogpost = blogpost;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Comment)) return false;
-        Comment comment1 = (Comment) o;
-        return getCommentId() == comment1.getCommentId() &&
-                Objects.equals(getTimePosted(), comment1.getTimePosted()) &&
-                Objects.equals(getContent(), comment1.getContent()) &&
-                Objects.equals(getUser(), comment1.getUser()) &&
-                Objects.equals(getBlogpost(), comment1.getBlogpost());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getCommentId(), getTimePosted(), getContent(), getUser(), getBlogpost());
-    }
 
     @Override
     public String toString() {
@@ -77,4 +32,23 @@ public class Comment {
                 ", blogpost=" + blogpost +
                 '}';
     }
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(blogpost, commentId, content, timePosted, user);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Comment other = (Comment) obj;
+		return Objects.equals(blogpost, other.blogpost) && commentId == other.commentId
+				&& Objects.equals(content, other.content) && Objects.equals(timePosted, other.timePosted)
+				&& Objects.equals(user, other.user);
+	}
 }

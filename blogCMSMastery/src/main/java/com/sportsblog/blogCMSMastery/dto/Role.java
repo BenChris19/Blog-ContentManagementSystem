@@ -2,39 +2,18 @@ package com.sportsblog.blogCMSMastery.dto;
 
 import java.util.Objects;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
+@Getter
 public class Role {
     private int roleId;
     private String role;
-
-    public int getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(int roleId) {
-        this.roleId = roleId;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Role)) return false;
-        Role role1 = (Role) o;
-        return getRoleId() == role1.getRoleId() &&
-                Objects.equals(getRole(), role1.getRole());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getRoleId(), getRole());
-    }
 
     @Override
     public String toString() {
@@ -43,4 +22,23 @@ public class Role {
                 ", role='" + role + '\'' +
                 '}';
     }
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(role, roleId);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Role other = (Role) obj;
+		return Objects.equals(role, other.role) && roleId == other.roleId;
+	}
+    
+    
 }
