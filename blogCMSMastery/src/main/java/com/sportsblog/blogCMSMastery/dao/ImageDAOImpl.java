@@ -14,15 +14,13 @@ import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
-//not using this
+
 @Repository
 public class ImageDAOImpl implements ImageDAO {
 
     ImageFolder imageFolder = new ImageFolder();
 
     private final String RESOURCE_ROOT = imageFolder.getRESOURCE_ROOT();
-//    private final String RESOURCE_ROOT = "C:/Users/Shazena/Documents/GITHUB/DDWAM4A-SuperheroSightings/SuperheroSightings/src/main/resources/static/";
-
     private final String UPLOAD_DIRECTORY = "images/uploads/";
 
     @Override
@@ -39,9 +37,7 @@ public class ImageDAOImpl implements ImageDAO {
                 String fullPath = RESOURCE_ROOT + UPLOAD_DIRECTORY + directory + "/";
                 File dir = new File(fullPath);
 
-                //If the directory doesn't exist
                 if (!dir.exists()) {
-                    //Make all directories
                     dir.mkdirs();
                 }
 
@@ -52,7 +48,6 @@ public class ImageDAOImpl implements ImageDAO {
                 e.printStackTrace();
             }
         }
-
         return savedFileName;
     }
 
@@ -80,9 +75,7 @@ public class ImageDAOImpl implements ImageDAO {
                 String fullPath = RESOURCE_ROOT + UPLOAD_DIRECTORY + directory + "/";
                 File dir = new File(fullPath);
 
-                //If the directory doesn't exist
                 if (!dir.exists()) {
-                    //Make all directories
                     dir.mkdirs();
                 }
 

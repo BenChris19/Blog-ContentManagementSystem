@@ -1,57 +1,57 @@
 CREATE TABLE ROLES (
 	roleId SERIAL PRIMARY KEY,
-    "role" varchar(20)
+    roleType VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE HASHTAGS (
 	hashtagId SERIAL PRIMARY KEY,
-    name varchar(20) not null
+    hashtagName VARCHAR(40) NOT NULL
 );
 
 CREATE TABLE USERS (
 	userId SERIAL PRIMARY KEY,
-    username varchar(20) not null,
-    "password" varchar(50) not null,
-    firstName varchar(20) not null,
-    lastName varchar(20) not null,
-    email varchar(20) not null,
-    "enable" boolean not null
+    userName VARCHAR(30) NOT NULL,
+    userPassword VARCHAR(100) NOT NULL,
+    firstName VARCHAR(30) NOT NULL,
+    lastName VARCHAR(30) NOT NULL,
+    email VARCHAR(30) NOT NULL,
+    isAdmin BOOLEAN NOT NULL
 );
 
 CREATE TABLE BLOGPOSTS (
 	blogpostId SERIAL PRIMARY KEY,
-    timePosted TIMESTAMP with time zone,
-    title varchar(100) not null,
-    "type" varchar(20) not null,
-    "status" varchar(20) not null,
-    photoFileName varchar(255),
-    "content" text not null,
-    userId int,
-    FOREIGN KEY (userId) references "USER"(userId)
+    timePosted TIMESTAMP WITH TIME ZONE,
+    blogTitle VARCHAR(100) NOT NULL,
+    blogType VARCHAR(30) NOT NULL,
+    blogStatus VARCHAR(30) NOT NULL,
+    blogPhoto VARCHAR(255),
+    blogContent TEXT NOT NULL,
+    userId INT,
+    FOREIGN KEY (userId) references USERS(userId)
 );
 
-CREATE TABLE COMMENTS (
+CREATE TABLE BLOGCOMMENTS (
 	commentId SERIAL PRIMARY KEY,
     timePosted TIMESTAMP with time zone,
-    "content" text not null,
-    userId int,
-    FOREIGN KEY (userId) references "USER"(userId),
-    blogpostId int,
-    FOREIGN KEY (blogpostId) references blogpost (blogpostId)
+    commentsContent TEXT NOT NULL,
+    userId INT,
+    FOREIGN KEY (userId) REFERENCES USERS(userId),
+    blogpostId INT,
+    FOREIGN KEY (blogpostId) REFERENCES BLOGPOSTS (blogpostId)
 );
 
 CREATE TABLE BLOGPOST_HASHTAG (
-	blogpostId int,
-    hashtagId int,
+	blogpostId INT,
+    hashtagId INT,
     PRIMARY KEY (blogpostId, hashtagId),
-    FOREIGN KEY (blogpostId) references blogpost (blogpostId),
-    FOREIGN KEY (hashtagId) references hashtag (hashtagId)
+    FOREIGN KEY (blogpostId) REFERENCES BLOGPOSTS (blogpostId),
+    FOREIGN KEY (hashtagId) REFERENCES HASHTAGS (hashtagId)
 );
 
 CREATE TABLE USER_ROLE (
-	userId int,
-    roleId int,
+	userId INT,
+    roleId INT,
     PRIMARY KEY (userId, roleId),
-    FOREIGN KEY (userId) references "USER"(userId),
-    FOREIGN KEY (roleId) references "ROLE"(roleId)
+    FOREIGN KEY (userId) REFERENCES USERS(userId),
+    FOREIGN KEY (roleId) REFERENCES ROLES(roleId)
 );

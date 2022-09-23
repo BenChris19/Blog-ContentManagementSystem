@@ -21,10 +21,10 @@ public class RoleDAOImpl implements RoleDAO {
     @Override
     @Transactional
     public Role createRole(Role role) {
-        final String INSERT_ROLE = "INSERT INTO \"ROLE\" (role) values (?)";
+        final String INSERT_ROLE = "INSERT INTO ROLES (roleType) values (?)";
         jdbc.update(INSERT_ROLE, role.getRole());
 
-        int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
+        int newId = jdbc.queryForObject("SELECT LAST()", Integer.class);
         role.setRoleId(newId);
 
         return role;
@@ -32,14 +32,14 @@ public class RoleDAOImpl implements RoleDAO {
 
     @Override
     public List<Role> readAllRoles() {
-        final String SELECT_ALL_ROLES = "SELECT * FROM \"ROLE\"";
+        final String SELECT_ALL_ROLES = "SELECT * FROM ROLES";
         return jdbc.query(SELECT_ALL_ROLES, new RoleMapper());
     }
 
     @Override
     public Role readRoleById(int id) {
         try {
-            final String SELECT_ROLE_BY_ID = "SELECT * FROM \"ROLE\" WHERE roleId = ?";
+            final String SELECT_ROLE_BY_ID = "SELECT * FROM ROLES WHERE roleId = ?";
             return jdbc.queryForObject(SELECT_ROLE_BY_ID, new RoleMapper(), id);
         } catch (DataAccessException ex) {
             return null;
@@ -49,7 +49,7 @@ public class RoleDAOImpl implements RoleDAO {
     @Override
     @Transactional
     public void updateRole(Role role) {
-        final String UPDATE_ROLE = "UPDATE \"ROLE\" SET role = ? WHERE roleId = ?";
+        final String UPDATE_ROLE = "UPDATE ROLES SET roleType = ? WHERE roleId = ?";
         jdbc.update(UPDATE_ROLE, role.getRole(), role.getRoleId());
     }
 
@@ -59,7 +59,7 @@ public class RoleDAOImpl implements RoleDAO {
         final String DELETE_USER_ROLE = "DELETE FROM user_role WHERE roleId = ?";
         jdbc.update(DELETE_USER_ROLE, id);
 
-        final String DELETE_ROLE = "DELETE FROM \"ROLE\" WHERE roleId = ?";
+        final String DELETE_ROLE = "DELETE FROM ROLES WHERE roleId = ?";
         jdbc.update(DELETE_ROLE, id);
     }
 
@@ -69,7 +69,7 @@ public class RoleDAOImpl implements RoleDAO {
             Role role = new Role();
 
             role.setRoleId(resultSet.getInt("roleId"));
-            role.setRole(resultSet.getString("role"));
+            role.setRole(resultSet.getString("roleType"));
 
             return role;
         }

@@ -7,12 +7,12 @@ import com.sportsblog.blogCMSMastery.dto.User;
 
 public interface UserDAO {
     public User createUser (User user);
+    
     public List<User> readAllUsers ();
     public User readUserById (int id);
+    List<Role> getRoleForUser(int userId);
+    User getUserByUsername(String username);
+    
     public void updateUser (User user);
     public void deleteUser (int id);
-
-    List<Role> getRoleForUser(int userId);
-
-    User getUserByUsername(String username);
 }

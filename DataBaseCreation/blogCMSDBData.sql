@@ -1,81 +1,57 @@
-INSERT INTO 
-	"ROLE" (roleid,"role") 
-VALUES
-	(1,'ROLE_ADMIN'),
-    (2,'ROLE_MANAGER'),
-    (3,'ROLE_USER');
+INSERT INTO ROLES (roleId,roleType) VALUES
+    (1,'TYPE_MANAGER'),
+	(2,'TYPE_ADMIN'),
+    (3,'TYPE_USER');
 
-INSERT INTO "USER" (userid,username, "password", firstname, lastname, email, "enable") values 
-	(1,'admin', 'password', 'Kristina', 'Zakharova', 'zakharova.kr@gmail.com', true),
-    (2,'contentManager1', 'password', 'Kristina', 'Trudorudo', 'k.trudorudo@gmail.com', true),
-    (3,'contentManager2', 'password', 'Sonia', 'Myslova', 'sonia@gmail.com', true),
-    (4,'user1', 'password', 'Katya', 'Kuzina', 'kuzina@gmail.com', true),
-    (5,'user2', 'password', 'Alberto', 'Simon', 'simon@gmail.com', true),
-    (6,'user3', 'password', 'Tania', 'Novikova', 'tania@gmail.com', true);
+INSERT INTO USERS (userId, userName, userPassword, firstName, lastName, email, isAdmin) VALUES 
+	(1,'manager', 'password', 'Biraj', 'Das', 'birajdas.@gmail.com', true),
+    (2,'admin', 'password', 'Silviu', 'Badica', 'silviu@gmail.com', true),
+    (3,'user', 'password', 'Scott', 'Hollas', 'scho@gmail.com', true);
     
-INSERT INTO user_role (userId, roleId) values
+INSERT INTO USER_ROLE (userId, roleId) VALUES
 	(1, 1), (1, 2), (1, 3),
     (2, 2), (2, 3),
-    (3, 2), (3, 3),
-    (4,3),
-    (5,3),
-    (6,3);
+    (3, 3);
     
-INSERT INTO hashtag ("name") values
-	('yoga'),
-    ('yogamat'),
-    ('headstand'),
-    ('handstand'),
-    ('ashtanga'),
-    ('vinyasa'),
-    ('yoga props'),
-    ('tutorial'),
-    ('morning flow'),
-    ('yinyoga'),
-    ('heap opener'),
-    ('inversions'),
-    ('flexibility'),
-    ('strength'),
-    ('yoga live'),
-    ('healing');
+INSERT INTO HASHTAGS (hashtagName) VALUES
+	('Table Tennis'),
+    ('Running'),
+    ('Powerlifting'),
+    ('Football');
     
-    UPDATE "USER" SET password = '$2a$10$zaD5sc.G1WAWSpvPTZY7l.H8wWcSy.Vszwuz22ezCmA2PueQOvcgK' WHERE userId = 1;
-    UPDATE "USER" SET password = '$2a$10$zaD5sc.G1WAWSpvPTZY7l.H8wWcSy.Vszwuz22ezCmA2PueQOvcgK' WHERE userId = 2;
-	UPDATE "USER" SET password = '$2a$10$zaD5sc.G1WAWSpvPTZY7l.H8wWcSy.Vszwuz22ezCmA2PueQOvcgK' WHERE userId = 3;
-    UPDATE "USER" SET password = '$2a$10$zaD5sc.G1WAWSpvPTZY7l.H8wWcSy.Vszwuz22ezCmA2PueQOvcgK' WHERE userId = 4;
-	UPDATE "USER" SET password = '$2a$10$zaD5sc.G1WAWSpvPTZY7l.H8wWcSy.Vszwuz22ezCmA2PueQOvcgK' WHERE userId = 5;
-    UPDATE "USER" SET password = '$2a$10$zaD5sc.G1WAWSpvPTZY7l.H8wWcSy.Vszwuz22ezCmA2PueQOvcgK' WHERE userId = 6;
-    
-INSERT INTO blogpost (timePosted, title, "type", "status", userId, "content") values
-	('2020-10-1', 'How to handstand?', 'blog', 'public', 1,
-		'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae turpis massa sed elementum tempus egestas sed sed. Nulla facilisi cras fermentum odio eu feugiat pretium nibh. Lacus vestibulum sed arcu non odio. Convallis aenean et tortor at risus viverra adipiscing. Sit amet mattis vulputate enim nulla aliquet porttitor. In hendrerit gravida rutrum quisque non. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin. Vel quam elementum pulvinar etiam non. Odio ut enim blandit volutpat maecenas. Tincidunt augue interdum velit euismod in pellentesque. Commodo nulla facilisi nullam vehicula ipsum. At lectus urna duis convallis convallis tellus id interdum. Gravida in fermentum et sollicitudin ac orci phasellus egestas tellus. Volutpat commodo sed egestas egestas fringilla phasellus faucibus scelerisque. Velit aliquet sagittis id consectetur. At ultrices mi tempus imperdiet nulla. Imperdiet massa tincidunt nunc pulvinar sapien et ligula.
-		Eget nunc lobortis mattis aliquam. Fermentum dui faucibus in ornare quam. Ornare arcu odio ut sem nulla pharetra diam sit amet. Tristique senectus et netus et. Lobortis feugiat vivamus at augue eget arcu. Leo in vitae turpis massa sed. Proin libero nunc consequat interdum varius sit amet mattis vulputate. Est ullamcorper eget nulla facilisi. Sit amet consectetur adipiscing elit duis tristique sollicitudin. Gravida quis blandit turpis cursus in. Egestas egestas fringilla phasellus faucibus scelerisque. Pharetra vel turpis nunc eget.
-		Sem nulla pharetra diam sit. Sit amet consectetur adipiscing elit ut. Sed egestas egestas fringilla phasellus faucibus scelerisque eleifend donec. Sollicitudin tempor id eu nisl nunc mi ipsum faucibus. Faucibus pulvinar elementum integer enim neque volutpat ac. In nulla posuere sollicitudin aliquam ultrices. Purus sit amet luctus venenatis lectus magna fringilla urna. Dolor morbi non arcu risus. Sed odio morbi quis commodo odio. Quam adipiscing vitae proin sagittis. Pharetra pharetra massa massa ultricies mi. Dictum varius duis at consectetur lorem donec massa sapien. Quis ipsum suspendisse ultrices gravida.
-		Elementum pulvinar etiam non quam lacus suspendisse faucibus interdum. Habitasse platea dictumst quisque sagittis purus. Felis donec et odio pellentesque diam volutpat commodo sed egestas. Elementum tempus egestas sed sed risus pretium quam vulputate. Mollis aliquam ut porttitor leo a. Ut consequat semper viverra nam libero justo laoreet sit. Purus ut faucibus pulvinar elementum integer enim neque volutpat. Id aliquet risus feugiat in. Quam viverra orci sagittis eu volutpat odio. Aliquam etiam erat velit scelerisque in dictum non consectetur a. Morbi leo urna molestie at elementum eu. Sit amet nisl purus in mollis nunc sed. Tincidunt augue interdum velit euismod in pellentesque massa. A erat nam at lectus urna. Interdum velit laoreet id donec ultrices. 
-        Cras semper auctor neque vitae tempus quam pellentesque nec.'),
-	('2020-10-2', '5 tips for a stronger headstand', 'blog', 'public', 1,
-		'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae turpis massa sed elementum tempus egestas sed sed. Nulla facilisi cras fermentum odio eu feugiat pretium nibh. Lacus vestibulum sed arcu non odio. Convallis aenean et tortor at risus viverra adipiscing. Sit amet mattis vulputate enim nulla aliquet porttitor. In hendrerit gravida rutrum quisque non. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin. Vel quam elementum pulvinar etiam non. Odio ut enim blandit volutpat maecenas. Tincidunt augue interdum velit euismod in pellentesque. Commodo nulla facilisi nullam vehicula ipsum. At lectus urna duis convallis convallis tellus id interdum. Gravida in fermentum et sollicitudin ac orci phasellus egestas tellus. Volutpat commodo sed egestas egestas fringilla phasellus faucibus scelerisque. Velit aliquet sagittis id consectetur. At ultrices mi tempus imperdiet nulla. Imperdiet massa tincidunt nunc pulvinar sapien et ligula.
-		Eget nunc lobortis mattis aliquam. Fermentum dui faucibus in ornare quam. Ornare arcu odio ut sem nulla pharetra diam sit amet. Tristique senectus et netus et. Lobortis feugiat vivamus at augue eget arcu. Leo in vitae turpis massa sed. Proin libero nunc consequat interdum varius sit amet mattis vulputate. Est ullamcorper eget nulla facilisi. Sit amet consectetur adipiscing elit duis tristique sollicitudin. Gravida quis blandit turpis cursus in. Egestas egestas fringilla phasellus faucibus scelerisque. Pharetra vel turpis nunc eget.
-		Sem nulla pharetra diam sit. Sit amet consectetur adipiscing elit ut. Sed egestas egestas fringilla phasellus faucibus scelerisque eleifend donec. Sollicitudin tempor id eu nisl nunc mi ipsum faucibus. Faucibus pulvinar elementum integer enim neque volutpat ac. In nulla posuere sollicitudin aliquam ultrices. Purus sit amet luctus venenatis lectus magna fringilla urna. Dolor morbi non arcu risus. Sed odio morbi quis commodo odio. Quam adipiscing vitae proin sagittis. Pharetra pharetra massa massa ultricies mi. Dictum varius duis at consectetur lorem donec massa sapien. Quis ipsum suspendisse ultrices gravida.
-		Elementum pulvinar etiam non quam lacus suspendisse faucibus interdum. Habitasse platea dictumst quisque sagittis purus. Felis donec et odio pellentesque diam volutpat commodo sed egestas. Elementum tempus egestas sed sed risus pretium quam vulputate. Mollis aliquam ut porttitor leo a. Ut consequat semper viverra nam libero justo laoreet sit. Purus ut faucibus pulvinar elementum integer enim neque volutpat. Id aliquet risus feugiat in. Quam viverra orci sagittis eu volutpat odio. Aliquam etiam erat velit scelerisque in dictum non consectetur a. Morbi leo urna molestie at elementum eu. Sit amet nisl purus in mollis nunc sed. Tincidunt augue interdum velit euismod in pellentesque massa. A erat nam at lectus urna. Interdum velit laoreet id donec ultrices. 
-        Cras semper auctor neque vitae tempus quam pellentesque nec.'),
-	('2020-10-3', 'About', 'static', 'public', 1,
-		'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae turpis massa sed elementum tempus egestas sed sed. Nulla facilisi cras fermentum odio eu feugiat pretium nibh. Lacus vestibulum sed arcu non odio. Convallis aenean et tortor at risus viverra adipiscing. Sit amet mattis vulputate enim nulla aliquet porttitor. In hendrerit gravida rutrum quisque non. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin. Vel quam elementum pulvinar etiam non. Odio ut enim blandit volutpat maecenas. Tincidunt augue interdum velit euismod in pellentesque. Commodo nulla facilisi nullam vehicula ipsum. At lectus urna duis convallis convallis tellus id interdum. Gravida in fermentum et sollicitudin ac orci phasellus egestas tellus. Volutpat commodo sed egestas egestas fringilla phasellus faucibus scelerisque. Velit aliquet sagittis id consectetur. At ultrices mi tempus imperdiet nulla. Imperdiet massa tincidunt nunc pulvinar sapien et ligula.
-		Eget nunc lobortis mattis aliquam. Fermentum dui faucibus in ornare quam. Ornare arcu odio ut sem nulla pharetra diam sit amet. Tristique senectus et netus et. Lobortis feugiat vivamus at augue eget arcu. Leo in vitae turpis massa sed. Proin libero nunc consequat interdum varius sit amet mattis vulputate. Est ullamcorper eget nulla facilisi. Sit amet consectetur adipiscing elit duis tristique sollicitudin. Gravida quis blandit turpis cursus in. Egestas egestas fringilla phasellus faucibus scelerisque. Pharetra vel turpis nunc eget.
-		Sem nulla pharetra diam sit. Sit amet consectetur adipiscing elit ut. Sed egestas egestas fringilla phasellus faucibus scelerisque eleifend donec. Sollicitudin tempor id eu nisl nunc mi ipsum faucibus. Faucibus pulvinar elementum integer enim neque volutpat ac. In nulla posuere sollicitudin aliquam ultrices. Purus sit amet luctus venenatis lectus magna fringilla urna. Dolor morbi non arcu risus. Sed odio morbi quis commodo odio. Quam adipiscing vitae proin sagittis. Pharetra pharetra massa massa ultricies mi. Dictum varius duis at consectetur lorem donec massa sapien. Quis ipsum suspendisse ultrices gravida.
-		Elementum pulvinar etiam non quam lacus suspendisse faucibus interdum. Habitasse platea dictumst quisque sagittis purus. Felis donec et odio pellentesque diam volutpat commodo sed egestas. Elementum tempus egestas sed sed risus pretium quam vulputate. Mollis aliquam ut porttitor leo a. Ut consequat semper viverra nam libero justo laoreet sit. Purus ut faucibus pulvinar elementum integer enim neque volutpat. Id aliquet risus feugiat in. Quam viverra orci sagittis eu volutpat odio. Aliquam etiam erat velit scelerisque in dictum non consectetur a. Morbi leo urna molestie at elementum eu. Sit amet nisl purus in mollis nunc sed. Tincidunt augue interdum velit euismod in pellentesque massa. A erat nam at lectus urna. Interdum velit laoreet id donec ultrices. 
-        Cras semper auctor neque vitae tempus quam pellentesque nec.'), 
-	('2020-10-19', 'Yoga is cool', 'blog', 'private', 1,
-		'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae turpis massa sed elementum tempus egestas sed sed. Nulla facilisi cras fermentum odio eu feugiat pretium nibh. Lacus vestibulum sed arcu non odio. Convallis aenean et tortor at risus viverra adipiscing. Sit amet mattis vulputate enim nulla aliquet porttitor. In hendrerit gravida rutrum quisque non. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin. Vel quam elementum pulvinar etiam non. Odio ut enim blandit volutpat maecenas. Tincidunt augue interdum velit euismod in pellentesque. Commodo nulla facilisi nullam vehicula ipsum. At lectus urna duis convallis convallis tellus id interdum. Gravida in fermentum et sollicitudin ac orci phasellus egestas tellus. Volutpat commodo sed egestas egestas fringilla phasellus faucibus scelerisque. Velit aliquet sagittis id consectetur. At ultrices mi tempus imperdiet nulla. Imperdiet massa tincidunt nunc pulvinar sapien et ligula.
-		Eget nunc lobortis mattis aliquam. Fermentum dui faucibus in ornare quam. Ornare arcu odio ut sem nulla pharetra diam sit amet. Tristique senectus et netus et. Lobortis feugiat vivamus at augue eget arcu. Leo in vitae turpis massa sed. Proin libero nunc consequat interdum varius sit amet mattis vulputate. Est ullamcorper eget nulla facilisi. Sit amet consectetur adipiscing elit duis tristique sollicitudin. Gravida quis blandit turpis cursus in. Egestas egestas fringilla phasellus faucibus scelerisque. Pharetra vel turpis nunc eget.
-		Sem nulla pharetra diam sit. Sit amet consectetur adipiscing elit ut. Sed egestas egestas fringilla phasellus faucibus scelerisque eleifend donec. Sollicitudin tempor id eu nisl nunc mi ipsum faucibus. Faucibus pulvinar elementum integer enim neque volutpat ac. In nulla posuere sollicitudin aliquam ultrices. Purus sit amet luctus venenatis lectus magna fringilla urna. Dolor morbi non arcu risus. Sed odio morbi quis commodo odio. Quam adipiscing vitae proin sagittis. Pharetra pharetra massa massa ultricies mi. Dictum varius duis at consectetur lorem donec massa sapien. Quis ipsum suspendisse ultrices gravida.
-		Elementum pulvinar etiam non quam lacus suspendisse faucibus interdum. Habitasse platea dictumst quisque sagittis purus. Felis donec et odio pellentesque diam volutpat commodo sed egestas. Elementum tempus egestas sed sed risus pretium quam vulputate. Mollis aliquam ut porttitor leo a. Ut consequat semper viverra nam libero justo laoreet sit. Purus ut faucibus pulvinar elementum integer enim neque volutpat. Id aliquet risus feugiat in. Quam viverra orci sagittis eu volutpat odio. Aliquam etiam erat velit scelerisque in dictum non consectetur a. Morbi leo urna molestie at elementum eu. Sit amet nisl purus in mollis nunc sed. Tincidunt augue interdum velit euismod in pellentesque massa. A erat nam at lectus urna. Interdum velit laoreet id donec ultrices. 
-        Cras semper auctor neque vitae tempus quam pellentesque nec.');
+    UPDATE USERS SET userPassword = '$2a$10$zaD5sc.G1WAWSpvPTZY7l.H8wWcSy.Vszwuz22ezCmA2PueQOvcgK' WHERE userId = 1;
+    UPDATE USERS SET userPassword = '$2a$10$zaD5sc.G1WAWSpvPTZY7l.H8wWcSy.Vszwuz22ezCmA2PueQOvcgK' WHERE userId = 2;
+	UPDATE USERS SET userPassword = '$2a$10$zaD5sc.G1WAWSpvPTZY7l.H8wWcSy.Vszwuz22ezCmA2PueQOvcgK' WHERE userId = 3;    
+	
+INSERT INTO BLOGPOSTS (timePosted, blogTitle, blogType, blogStatus, userId, blogContent) VALUES
+	('2022-03-07', 'How to become good at table tennis', 'blog', 'public', 1,
+		'Table tennis, also known as ping-pong and whiff-whaff, is a sport in which two or four players hit a lightweight ball, also known as the ping-pong ball, back and forth across a table using small solid rackets.
+	 	 The game takes place on a hard table divided by a net. Except for the initial serve, the rules are generally as follows: players must allow a ball played toward them to bounce once on their side of the table and must
+	 	 return it so that it bounces on the opposite side at least once. A point is scored when a player fails to return the ball within the rules. Play is fast and demands quick reactions. Spinning the ball alters its trajectory
+	 	 and limits an opponent options, giving the hitter a great advantage.'),
+	('2022-03-29', 'How to run', 'blog', 'public', 1,
+		'Running is a method of terrestrial locomotion allowing humans and other animals to move rapidly on foot. Running is a type of gait characterized by an aerial phase in which all feet are above the ground (though there are exceptions).
+	 	 This is in contrast to walking, where one foot is always in contact with the ground, the legs are kept mostly straight and the center of gravity vaults over the stance leg or legs in an inverted pendulum fashion.
+	 	 A feature of a running body from the viewpoint of spring-mass mechanics is that changes in kinetic and potential energy within a stride occur simultaneously, with energy storage accomplished by springy tendons and passive muscle elasticity.
+	 	 The term running can refer to any of a variety of speeds ranging from jogging to sprinting.'),
+	('2022-04-07', 'About', 'static', 'public', 1,
+		'This blog is about sports. I like sport and think that people should do more sport and upload their propgress whilst doing sport.'), 
+	('2022-05-19', 'Powerlifting', 'blog', 'public', 1,
+		'Powerlifting is a strength sport that consists of three attempts at maximal weight on three lifts: squat, bench press, and deadlift. As in the sport of Olympic
+	 	weightlifting, it involves the athlete attempting a maximal weight single-lift effort of a barbell loaded with weight plates. Powerlifting evolved from a sport known as
+	 	"odd lifts", which followed the same three-attempt format but used a wider variety of events, akin to strongman competition. Eventually odd lifts became standardized to the current three.'),
+	('2022-09-23', 'How to kick a football', 'blog', 'public', 1,
+		'Football is a family of team sports that involve, to varying degrees, kicking a ball to score a goal. Unqualified, the word football normally means the form of football that is the most popular where the word is used.
+	 	Sports commonly called football include association football (known as soccer in North America and Oceania); gridiron football (specifically American football or Canadian football); Australian rules football; rugby union and rugby league; and Gaelic football.
+	 	These various forms of football share to varying extent common origins and are known as football codes..');
        
-INSERT INTO blogpost_hashtag (blogpostId, hashtagId) values 
-	(1, 1), (1, 2),
-    (2, 1), (2, 3);
+INSERT INTO BLOGPOST_HASHTAG (blogpostId, hashtagId) VALUES 
+	(1, 1), (2, 2), (3, 1), (4, 3), (5, 4);
 
-INSERT INTO "COMMENT" (timePosted, "content", userId, blogpostId) values 
-	('2020-10-11', 'Yoga is amazing!', 5, 2),
-    ('2020-10-12', 'Love inversions!', 6, 2);
+INSERT INTO BLOGCOMMENTS (timePosted, commentsContent, userId, blogpostId) VALUES 
+	('2022-08-18', 'I hurt my wrist playing table tennis, terrible sport', 3, 1),
+    ('2022-09-21', 'Only positve comments please!', 2, 1),
+	('2022-10-11', 'I just ran 0.5k', 3, 2),
+    ('2022-11-12', 'Congratulations to you!', 2, 2),
+	('2022-12-03', 'I am gigachad', 3, 4),
+    ('2022-12-31', 'Why do I need to learn how to kick a football?', 3, 5);

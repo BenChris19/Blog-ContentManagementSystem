@@ -22,10 +22,10 @@ public class HashtagDAOImpl implements HashtagDAO {
     @Override
     @Transactional
     public Hashtag createHashtag(Hashtag hashtag) {
-        final String INSERT_TAG = "INSERT INTO hashtag (name) VALUES (?)";
+        final String INSERT_TAG = "INSERT INTO HASHTAGS (hashtagName) VALUES (?)";
         jdbc.update(INSERT_TAG, hashtag.getName());
 
-        int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
+        int newId = jdbc.queryForObject("SELECT LAST()", Integer.class);
         hashtag.setHashtagId(newId);
 
         return hashtag;
@@ -33,14 +33,14 @@ public class HashtagDAOImpl implements HashtagDAO {
 
     @Override
     public List<Hashtag> readAllHashtags() {
-        final String SELECT_ALL_TAG = "SELECT * FROM hashtag";
+        final String SELECT_ALL_TAG = "SELECT * FROM HASHTAGS";
         return jdbc.query(SELECT_ALL_TAG, new HashtagMapper());
     }
 
     @Override
     public Hashtag readHashtagById(int id) {
         try {
-            final String SELECT_TAG_BY_ID = "SELECT * FROM hashtag WHERE hashtagId = ?";
+            final String SELECT_TAG_BY_ID = "SELECT * FROM HASHTAGS WHERE hashtagId = ?";
             return jdbc.queryForObject(SELECT_TAG_BY_ID, new HashtagMapper(), id);
         } catch (DataAccessException ex) {
             return null;
@@ -50,7 +50,7 @@ public class HashtagDAOImpl implements HashtagDAO {
     @Override
     @Transactional
     public void updateHashtag(Hashtag hashtag) {
-        final String UPDATE_TAG = "UPDATE hashtag SET name = ? WHERE hashtagId = ?";
+        final String UPDATE_TAG = "UPDATE HASHTAGS SET hashtagName = ? WHERE hashtagId = ?";
         jdbc.update(UPDATE_TAG, hashtag.getName(), hashtag.getHashtagId());
     }
 
@@ -60,7 +60,7 @@ public class HashtagDAOImpl implements HashtagDAO {
         final String DELETE_BLOGPOST_TAG = "DELETE FROM blogpost_hashtag WHERE hashtagId = ?";
         jdbc.update(DELETE_BLOGPOST_TAG, id);
 
-        final String DELETE_TAG = "DELETE FROM hashtag WHERE hashtagId = ?";
+        final String DELETE_TAG = "DELETE FROM HASHTAGS WHERE hashtagId = ?";
         jdbc.update(DELETE_TAG, id);
     }
 
@@ -71,7 +71,7 @@ public class HashtagDAOImpl implements HashtagDAO {
             Hashtag tag = new Hashtag();
 
             tag.setHashtagId(resultSet.getInt("hashtagId"));
-            tag.setName(resultSet.getString("name"));
+            tag.setName(resultSet.getString("hashtagName"));
 
             return tag;
         }

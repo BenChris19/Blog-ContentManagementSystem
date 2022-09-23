@@ -6,8 +6,11 @@ import com.sportsblog.blogCMSMastery.dto.Role;
 
 public interface RoleDAO {
     public Role createRole (Role role);
+    
     public List<Role> readAllRoles ();
     public Role readRoleById (int id);
+    
     public void updateRole (Role role);
+    
     public void deleteRole (int id);
 }
