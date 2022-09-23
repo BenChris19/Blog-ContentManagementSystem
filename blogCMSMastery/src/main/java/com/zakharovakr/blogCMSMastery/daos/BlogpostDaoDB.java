@@ -140,7 +140,7 @@ public class BlogpostDaoDB implements BlogpostDao {
     public List<Blogpost> getBlogpostByType(String type) {
         List<Blogpost> blogpostList = this.readAllBlogposts();
 //        contentList = filterScheduleExpiredDate(contentList);
-        List<Blogpost> typeList = new ArrayList();
+        List<Blogpost> typeList = new ArrayList<Blogpost>();
         for (Blogpost blogpost : blogpostList) {
 //
             if (blogpost.getType().equals(type) && blogpost.getStatus().equals("public")) {

@@ -23,7 +23,7 @@ public class UserDaoDB implements UserDao {
     @Override
     @Transactional
     public User createUser(User user) {
-        final String INSERT_USER = "INSERT INTO \"USER\" (username, password, firstName, lastName, email, enable) VALUES (?,?,?,?,?,?)";
+        final String INSERT_USER = "INSERT INTO USERS (username, password, firstName, lastName, email, enable) VALUES (?,?,?,?,?,?)";
         jdbc.update(INSERT_USER, user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(), user.getEmail(), user.isEnable());
         int newId = jdbc.queryForObject("SELECT lastval()", Integer.class);
         user.setUserId(newId);

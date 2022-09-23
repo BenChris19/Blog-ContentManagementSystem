@@ -1,0 +1,117 @@
+theme
+
+
+---package name--- 
+	change to runnerBlog/groupName
+
+---application properties---
+	commented out stuff
+
+---config---
+	do not touch?
+	SecurityWebApplicationInitializer may not be needed
+
+---controllers---
+	CustomErrorController
+		remove the comment
+		comments
+		method - names and order
+		variable
+		mappings
+	HashtagController
+		comments
+		method - names and order
+		variable
+		mappings
+	HomeController
+		comments
+		method - names and order
+		variable
+		mappings
+	LoginController
+		comments
+		method - names and order
+		variable
+		mappings
+	UserController
+		comments
+		method - names and order
+		variable
+		mappings
+		
+---service---
+	UserDetailsServiceImpl
+		comments
+		method - names and order
+		variable
+
+---daos---
+	Naming 	- BlogpostDao -> BlogPostDAO
+			- BlogpostDaoDB -> BlogPostDAOdbImpl/BlogPostDAODBImpl
+	BlogpostDao
+		method - names and order
+	BlogpostDaoDB
+		comments
+		method - names and order
+		variable
+	CommentDao
+		method - names and order
+	CommentDaoDB
+		comments
+		method - names and order
+		variable
+	HashtagDao
+		method - names and order
+	HashtagDaoDB
+		comments
+		method - names and order
+		variable
+	ImageDao
+		method - names and order
+	ImageDaoDB
+		comments
+		method - names and order
+		variable
+	RoleDao
+		method - names and order
+	RoleDaoDB
+		comments
+		method - names and order
+		variable
+	UserDao
+		method - names and order
+	UserDaoDB
+		comments
+		method - names and order
+		variable
+
+---dtos---
+	Blogpost
+		tag prompts
+		lombok
+		comments
+	Comment
+		tag prompts
+		lombok
+		comments
+	Hashtag
+		tag prompts
+		lombok
+		comments
+	ImageFolder
+		tag prompts
+		lombok
+		comments
+	Role
+		tag prompts
+		lombok
+		comments
+	User
+		tag prompts
+		lombok
+		comments
+
+---SQL Scripts---
+	DB
+	
+	Data
