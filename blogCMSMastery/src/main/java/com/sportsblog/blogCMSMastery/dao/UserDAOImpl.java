@@ -24,7 +24,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     @Transactional
     public User createUser(User user) {
-        final String INSERT_USER = "INSERT INTO USERS (userName, userPassword, firstName, lastName, email, isAdmin) VALUES (?,?,?,?,?,?)";
+        final String INSERT_USER = "INSERT INTO USERS (userName, userPassword, firstName, lastName, email, isActive) VALUES (?,?,?,?,?,?)";
         jdbc.update(INSERT_USER, user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(), user.getEmail(), user.isEnable());
         int newId = jdbc.queryForObject("SELECT LAST()", Integer.class);//change to lastval() is cannot add new users
         user.setUserId(newId);
@@ -82,7 +82,7 @@ public class UserDAOImpl implements UserDAO {
                 "firstName = ?, " +
                 "lastName = ?, " +
                 "email = ?, " +
-                "isAdmin = ? " +
+                "isActive = ? " +
                 "WHERE userId = ?";
         jdbc.update(UPDATE_USER, user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(), user.getEmail(), user.isEnable(), user.getUserId());
 
@@ -146,7 +146,7 @@ public class UserDAOImpl implements UserDAO {
             user.setFirstName(resultSet.getString("firstName"));
             user.setLastName(resultSet.getString("lastName"));
             user.setEmail(resultSet.getString("email"));
-            user.setEnable(resultSet.getBoolean("isAdmin"));
+            user.setEnable(resultSet.getBoolean("isActive"));
 
             return user;
         }

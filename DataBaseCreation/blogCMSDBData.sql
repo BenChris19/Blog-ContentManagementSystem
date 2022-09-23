@@ -1,9 +1,9 @@
 INSERT INTO ROLES (roleId,roleType) VALUES
-    (1,'TYPE_MANAGER'),
-	(2,'TYPE_ADMIN'),
-    (3,'TYPE_USER');
+	(1,'ROLE_ADMIN'),
+    (2,'ROLE_MANAGER'),
+    (3,'ROLE_USER');
 
-INSERT INTO USERS (userId, userName, userPassword, firstName, lastName, email, isAdmin) VALUES 
+INSERT INTO USERS (userId, userName, userPassword, firstName, lastName, email, isActive) VALUES 
 	(1,'manager', 'password', 'Biraj', 'Das', 'birajdas.@gmail.com', true),
     (2,'admin', 'password', 'Silviu', 'Badica', 'silviu@gmail.com', true),
     (3,'user', 'password', 'Scott', 'Hollas', 'scho@gmail.com', true);

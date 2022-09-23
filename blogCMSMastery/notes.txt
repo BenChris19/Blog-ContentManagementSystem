@@ -1,4 +1,5 @@
-theme
+---front end---
+css
 
 
 ---application properties---
@@ -7,6 +8,8 @@ theme
 ---config---
 	do not touch?
 	SecurityWebApplicationInitializer may not be needed
+	
+---java doc---
 
 ---controllers---
 	CustomErrorController
