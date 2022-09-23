@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class BlogpostDaoDB implements BlogpostDao {
+public class BlogPostDAOImpl implements BlogPostDAO {
 
     @Autowired
     JdbcTemplate jdbc;
@@ -25,10 +25,10 @@ public class BlogpostDaoDB implements BlogpostDao {
     @Override
     @Transactional
     public Blogpost createBlogpost(Blogpost blogpost) {
-        final String INSERT_BLOGPOST = "INSERT INTO blogpost (timePosted, title, type, status, content, photoFileName, userId) VALUES (?,?,?,?,?,?,?)";
+        final String INSERT_BLOGPOST = "INSERT INTO BLOGPOSTS (timePosted, title, type, status, content, photoFileName, userId) VALUES (?,?,?,?,?,?,?)";
         jdbc.update(INSERT_BLOGPOST, blogpost.getTimePosted(), blogpost.getTitle(), blogpost.getType(), blogpost.getStatus(), blogpost.getContent(), blogpost.getPhotoFileName(), blogpost.getUser().getUserId());
 
-        int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
+        int newId = jdbc.queryForObject("SELECT LAST()", Integer.class);
         blogpost.setBlogpostId(newId);
 
         insertIntoBlogpostTag(blogpost);
@@ -38,7 +38,7 @@ public class BlogpostDaoDB implements BlogpostDao {
 
     @Override
     public List<Blogpost> readAllBlogposts() {
-        final String SELECT_ALL_BLOGPOSTS = "SELECT * FROM blogpost";
+        final String SELECT_ALL_BLOGPOSTS = "SELECT * FROM BLOGPOSTS";
         List<Blogpost> blogpostList = jdbc.query(SELECT_ALL_BLOGPOSTS, new BlogpostMapper());
         associateUserBlogpost(blogpostList);
         associateBlogpostTag(blogpostList);
@@ -48,7 +48,7 @@ public class BlogpostDaoDB implements BlogpostDao {
 
     @Override
     public Blogpost readBlogpostById(int id) {
-        final String SELECT_BLOGPOST_BY_ID = "SELECT * FROM blogpost WHERE blogpostId = ?";
+        final String SELECT_BLOGPOST_BY_ID = "SELECT * FROM BLOGPOSTS WHERE blogpostId = ?";
         Blogpost blogpost = jdbc.queryForObject(SELECT_BLOGPOST_BY_ID, new BlogpostMapper(), id);
 
         blogpost.setUser(getUserForBlogpost(blogpost.getBlogpostId()));
@@ -60,7 +60,7 @@ public class BlogpostDaoDB implements BlogpostDao {
     @Override
     @Transactional
     public void updateBlogpost(Blogpost blogpost) {
-        final String UPDATE_BLOGPOST = "UPDATE blogpost SET " +
+        final String UPDATE_BLOGPOST = "UPDATE BLOGPOSTS SET " +
                 "timePosted = ?, " +
                 "title = ?, " +
                 "type = ?, " +
@@ -84,10 +84,10 @@ public class BlogpostDaoDB implements BlogpostDao {
         final String DELETE_BLOGPOST_TAG = "DELETE FROM blogpost_hashtag WHERE blogpostId = ?";
         jdbc.update(DELETE_BLOGPOST_TAG, id);
 
-        final String DELETE_COMMENT = "DELETE FROM comment WHERE blogpostId = ?";
+        final String DELETE_COMMENT = "DELETE FROM COMMENTS WHERE blogpostId = ?";
         jdbc.update(DELETE_COMMENT, id);
 
-        final String DELETE_BLOGPOST = "DELETE FROM blogpost WHERE blogpostId = ?";
+        final String DELETE_BLOGPOST = "DELETE FROM BLOGPOSTS WHERE blogpostId = ?";
         jdbc.update(DELETE_BLOGPOST, id);
     }
 
@@ -100,10 +100,10 @@ public class BlogpostDaoDB implements BlogpostDao {
 
     @Override
     public User getUserForBlogpost(int blogpostId) {
-        final String SELECT_USER_BY_BLOGPOST_ID = "SELECT * FROM \"USER\" u " +
-                "JOIN blogpost b ON u.userid = b.userid " +
+        final String SELECT_USER_BY_BLOGPOST_ID = "SELECT * FROM USERS u " +
+                "JOIN BLOGPOSTS b ON u.userid = b.userid " +
                 "WHERE b.blogpostId = ?";
-        User user = jdbc.queryForObject(SELECT_USER_BY_BLOGPOST_ID, new UserDaoDB.UserMapper(), blogpostId);
+        User user = jdbc.queryForObject(SELECT_USER_BY_BLOGPOST_ID, new UserDAOImpl.UserMapper(), blogpostId);
         user.setRoles(getRoleForUser(user.getUserId()));
         return user;
     }
@@ -117,10 +117,10 @@ public class BlogpostDaoDB implements BlogpostDao {
 
     @Override
     public List<Hashtag> getTagsForBlogpost(int blogpostId) {
-        final String SELECT_TAG_BY_BLOGPOST_ID = "SELECT h.* FROM hashtag h " +
+        final String SELECT_TAG_BY_BLOGPOST_ID = "SELECT h.* FROM HASHTAGS h " +
                 "JOIN blogpost_hashtag bh ON h.hashtagId = bh.hashtagId " +
                 "WHERE bh.blogpostId = ?";
-        return jdbc.query(SELECT_TAG_BY_BLOGPOST_ID, new HashtagDaoDB.HashtagMapper(), blogpostId);
+        return jdbc.query(SELECT_TAG_BY_BLOGPOST_ID, new HashtagDAOImpl.HashtagMapper(), blogpostId);
     }
 
     private void associateBlogpostTag(List<Blogpost> blogpostList) {
@@ -131,10 +131,10 @@ public class BlogpostDaoDB implements BlogpostDao {
     }
 
     public List<Role> getRoleForUser(int userId) {
-        final String SELECT_ROLE_BY_USER_ID = "SELECT * FROM \"ROLE\" r " +
+        final String SELECT_ROLE_BY_USER_ID = "SELECT * FROM ROLES r " +
                 "JOIN user_role ur ON r.roleId = ur.roleId " +
                 "WHERE ur.userId = ?";
-        return jdbc.query(SELECT_ROLE_BY_USER_ID, new RoleDaoDB.RoleMapper(), userId);
+        return jdbc.query(SELECT_ROLE_BY_USER_ID, new RoleDAOImpl.RoleMapper(), userId);
     }
 
     @Override
@@ -153,7 +153,7 @@ public class BlogpostDaoDB implements BlogpostDao {
 
     @Override
     public List<Blogpost> getBlogpostByTag(int tagId) {
-        final String SELECT_BLOGPOST_BY_TAG = "SELECT b.* FROM blogpost b " +
+        final String SELECT_BLOGPOST_BY_TAG = "SELECT b.* FROM BLOGPOSTS b " +
                 "JOIN blogpost_hashtag bh ON bh.blogpostId = b.blogpostId " +
                 "WHERE bh.hashtagId = ?";
         List<Blogpost> blogpostList =  jdbc.query(SELECT_BLOGPOST_BY_TAG, new BlogpostMapper(), tagId);
@@ -161,7 +161,7 @@ public class BlogpostDaoDB implements BlogpostDao {
         associateUserBlogpost(blogpostList);
 
         //sorting out by status (only public)
-        List<Blogpost> sortedPublicList = new ArrayList();
+        List<Blogpost> sortedPublicList = new ArrayList<Blogpost>();
         for (Blogpost blogpost : blogpostList) {
             if (blogpost.getStatus().equals("public")) {
                 sortedPublicList.add(blogpost);
@@ -173,13 +173,13 @@ public class BlogpostDaoDB implements BlogpostDao {
     @Override
     public List<Blogpost> getBlogpostBySearchTitle(String searchText) {
         searchText = "%" + searchText + "%";
-        final String SELECT_BLOGPOST_BY_SEARCH_TITLE = "SELECT * FROM blogpost WHERE title LIKE ?";
+        final String SELECT_BLOGPOST_BY_SEARCH_TITLE = "SELECT * FROM BLOGPOSTS WHERE title LIKE ?";
         List<Blogpost> blogpostList = jdbc.query(SELECT_BLOGPOST_BY_SEARCH_TITLE, new BlogpostMapper(), searchText);
         associateBlogpostTag(blogpostList);
         associateUserBlogpost(blogpostList);
 
         //sorting out by status (only public)
-        List<Blogpost> sortedPublicList = new ArrayList();
+        List<Blogpost> sortedPublicList = new ArrayList<Blogpost>();
         for (Blogpost blogpost : blogpostList) {
             if (blogpost.getStatus().equals("public")) {
                 sortedPublicList.add(blogpost);

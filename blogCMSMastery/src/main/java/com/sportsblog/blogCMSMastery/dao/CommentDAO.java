@@ -6,7 +6,7 @@ import com.sportsblog.blogCMSMastery.dto.Blogpost;
 import com.sportsblog.blogCMSMastery.dto.Comment;
 import com.sportsblog.blogCMSMastery.dto.User;
 
-public interface CommentDao {
+public interface CommentDAO {
     public Comment createComment (Comment comment);
     public List<Comment> readAllComments ();
     public Comment readCommentById (int id);

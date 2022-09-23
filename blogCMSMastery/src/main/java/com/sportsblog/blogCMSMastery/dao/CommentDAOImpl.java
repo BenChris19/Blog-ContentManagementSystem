@@ -17,7 +17,7 @@ import java.util.List;
 
 //not really using this - only displaying comments under some posts
 @Repository
-public class CommentDaoDB implements CommentDao {
+public class CommentDAOImpl implements CommentDAO {
 
     @Autowired
     JdbcTemplate jdbc;
@@ -80,7 +80,7 @@ public class CommentDaoDB implements CommentDao {
         final String SELECT_USER_BY_COMMENT_ID = "SELECT u.* FROM \"USER\" u " +
                 "JOIN \"COMMENT\" c ON u.userId = c.userId " +
                 "WHERE c.commentId = ?";
-        User user = jdbc.queryForObject(SELECT_USER_BY_COMMENT_ID, new UserDaoDB.UserMapper(), commentId);
+        User user = jdbc.queryForObject(SELECT_USER_BY_COMMENT_ID, new UserDAOImpl.UserMapper(), commentId);
         user.setRoles(getRoleForUser(user.getUserId()));
         return user;
     }
@@ -97,7 +97,7 @@ public class CommentDaoDB implements CommentDao {
         final String SELECT_BLOGPOST_BY_COMMENT_ID = "SELECT b.* FROM blogpost b " +
                 "JOIN \"COMMENT\" cm ON b.blogpostId = cm.blogpostId " +
                 "WHERE cm.commentId = ?";
-        Blogpost blogpost = jdbc.queryForObject(SELECT_BLOGPOST_BY_COMMENT_ID, new BlogpostDaoDB.BlogpostMapper(), commentId);
+        Blogpost blogpost = jdbc.queryForObject(SELECT_BLOGPOST_BY_COMMENT_ID, new BlogPostDAOImpl.BlogpostMapper(), commentId);
         blogpost.setUser(getUserForBlogpost(blogpost.getBlogpostId()));
         blogpost.setHashtags(getTagsForBlogpost(blogpost.getBlogpostId()));
         return blogpost;
@@ -113,14 +113,14 @@ public class CommentDaoDB implements CommentDao {
         final String SELECT_ROLE_BY_USER_ID = "SELECT r.* FROM \"ROLE\" r " +
                 "JOIN user_role ur ON r.roleId = ur.roleId " +
                 "WHERE ur.userId = ?";
-        return jdbc.query(SELECT_ROLE_BY_USER_ID, new RoleDaoDB.RoleMapper(), userId);
+        return jdbc.query(SELECT_ROLE_BY_USER_ID, new RoleDAOImpl.RoleMapper(), userId);
     }
 
     public User getUserForBlogpost(int blogpostId) {
         final String SELECT_USER_BY_BLOGPOST_ID = "SELECT u.* FROM \"USER\" u " +
                 "JOIN blogpost b ON u.userId = b.userId " +
                 "WHERE b.blogpostId = ?";
-        User user = jdbc.queryForObject(SELECT_USER_BY_BLOGPOST_ID, new UserDaoDB.UserMapper(), blogpostId);
+        User user = jdbc.queryForObject(SELECT_USER_BY_BLOGPOST_ID, new UserDAOImpl.UserMapper(), blogpostId);
         user.setRoles(getRoleForUser(user.getUserId()));
         return user;
     }
@@ -129,7 +129,7 @@ public class CommentDaoDB implements CommentDao {
         final String SELECT_TAG_BY_BLOGPOST_ID = "SELECT h.* FROM hashtag h " +
                 "JOIN blogpost_hashtag bh ON h.hashtagId = bh.hashtagId " +
                 "WHERE bh.blogpostId = ?";
-        return jdbc.query(SELECT_TAG_BY_BLOGPOST_ID, new HashtagDaoDB.HashtagMapper(), blogpostId);
+        return jdbc.query(SELECT_TAG_BY_BLOGPOST_ID, new HashtagDAOImpl.HashtagMapper(), blogpostId);
     }
 
     @Override

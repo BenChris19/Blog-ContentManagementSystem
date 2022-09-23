@@ -1,6 +1,6 @@
 package com.sportsblog.blogCMSMastery.service;
 
-import com.sportsblog.blogCMSMastery.dao.UserDao;
+import com.sportsblog.blogCMSMastery.dao.UserDAO;
 import com.sportsblog.blogCMSMastery.dto.Role;
 import com.sportsblog.blogCMSMastery.dto.User;
 
@@ -18,7 +18,7 @@ import java.util.Set;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
-    UserDao users;
+    UserDAO users;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = users.getUserByUsername(username);

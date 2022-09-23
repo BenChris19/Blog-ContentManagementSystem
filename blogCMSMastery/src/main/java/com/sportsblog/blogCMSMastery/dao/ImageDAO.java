@@ -3,7 +3,7 @@ package com.sportsblog.blogCMSMastery.dao;
 import org.springframework.web.multipart.MultipartFile;
 
 //not using this
-public interface ImageDao {
+public interface ImageDAO {
 
     public String saveImage(MultipartFile file, String fileName, String directory);
 

@@ -1,10 +1,10 @@
 package com.sportsblog.blogCMSMastery.controller;
 
-import com.sportsblog.blogCMSMastery.dao.BlogpostDao;
-import com.sportsblog.blogCMSMastery.dao.CommentDao;
-import com.sportsblog.blogCMSMastery.dao.HashtagDao;
-import com.sportsblog.blogCMSMastery.dao.RoleDao;
-import com.sportsblog.blogCMSMastery.dao.UserDao;
+import com.sportsblog.blogCMSMastery.dao.BlogPostDAO;
+import com.sportsblog.blogCMSMastery.dao.CommentDAO;
+import com.sportsblog.blogCMSMastery.dao.HashtagDAO;
+import com.sportsblog.blogCMSMastery.dao.RoleDAO;
+import com.sportsblog.blogCMSMastery.dao.UserDAO;
 import com.sportsblog.blogCMSMastery.dto.Blogpost;
 import com.sportsblog.blogCMSMastery.dto.Hashtag;
 
@@ -24,19 +24,19 @@ import java.util.Set;
 @Controller
 public class HashtagController {
     @Autowired
-    RoleDao roleDao;
+    RoleDAO roleDao;
 
     @Autowired
-    UserDao userDao;
+    UserDAO userDao;
 
     @Autowired
-    BlogpostDao blogpostDao;
+    BlogPostDAO blogpostDao;
 
     @Autowired
-    HashtagDao hashtagDao;
+    HashtagDAO hashtagDao;
 
     @Autowired
-    CommentDao commentDao;
+    CommentDAO commentDao;
 
     @GetMapping("/categoryManager")
     public String displayCategoryManager (Model model) {

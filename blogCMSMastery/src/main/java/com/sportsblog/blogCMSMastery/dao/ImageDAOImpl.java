@@ -16,7 +16,7 @@ import java.time.ZoneOffset;
 
 //not using this
 @Repository
-public class ImageDaoDB implements ImageDao {
+public class ImageDAOImpl implements ImageDAO {
 
     ImageFolder imageFolder = new ImageFolder();
 

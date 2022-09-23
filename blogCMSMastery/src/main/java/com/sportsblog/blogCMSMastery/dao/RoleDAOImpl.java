@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Repository
-public class RoleDaoDB implements RoleDao {
+public class RoleDAOImpl implements RoleDAO {
     @Autowired
     JdbcTemplate jdbc;
 

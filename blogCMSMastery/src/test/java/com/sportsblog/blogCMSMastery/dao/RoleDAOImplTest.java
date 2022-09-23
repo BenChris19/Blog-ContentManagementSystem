@@ -18,22 +18,22 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-class RoleDaoDBTest {
+class RoleDAOImplTest {
 
     @Autowired
-    RoleDao roleDao;
+    RoleDAO roleDao;
 
     @Autowired
-    UserDao userDao;
+    UserDAO userDao;
 
     @Autowired
-    BlogpostDao blogpostDao;
+    BlogPostDAO blogpostDao;
 
     @Autowired
-    HashtagDao hashtagDao;
+    HashtagDAO hashtagDao;
 
     @Autowired
-    CommentDao commentDao;
+    CommentDAO commentDao;
 
     @BeforeEach
     void setUp() {

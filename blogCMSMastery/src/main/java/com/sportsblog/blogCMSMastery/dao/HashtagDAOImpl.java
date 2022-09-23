@@ -15,7 +15,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Repository
-public class HashtagDaoDB implements HashtagDao {
+public class HashtagDAOImpl implements HashtagDAO {
     @Autowired
     JdbcTemplate jdbc;
 

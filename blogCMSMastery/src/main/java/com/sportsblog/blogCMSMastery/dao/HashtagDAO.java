@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.sportsblog.blogCMSMastery.dto.Hashtag;
 
-public interface HashtagDao {
+public interface HashtagDAO {
     public Hashtag createHashtag (Hashtag hashtag);
     public List<Hashtag> readAllHashtags ();
     public Hashtag readHashtagById (int id);

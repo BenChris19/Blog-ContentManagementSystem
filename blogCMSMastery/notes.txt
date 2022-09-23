@@ -44,7 +44,7 @@ theme
 
 ---daos---
 	Naming 	- BlogpostDao -> BlogPostDAO
-			- BlogpostDaoDB -> BlogPostDAOdbImpl/BlogPostDAODBImpl
+			- BlogpostDaoDB -> BlogPostDAOImpl
 	BlogpostDao
 		method - names and order
 	BlogpostDaoDB

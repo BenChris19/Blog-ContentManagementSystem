@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.sportsblog.blogCMSMastery.dto.Role;
 
-public interface RoleDao {
+public interface RoleDAO {
     public Role createRole (Role role);
     public List<Role> readAllRoles ();
     public Role readRoleById (int id);

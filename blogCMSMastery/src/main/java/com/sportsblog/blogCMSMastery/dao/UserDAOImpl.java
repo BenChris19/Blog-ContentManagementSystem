@@ -16,7 +16,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Repository
-public class UserDaoDB implements UserDao {
+public class UserDAOImpl implements UserDAO {
 
     @Autowired
     JdbcTemplate jdbc;
@@ -77,7 +77,7 @@ public class UserDaoDB implements UserDao {
     @Transactional
     public void deleteUser(int id) {
         final String SELECT_BLOGPOST_BY_USER_ID = "SELECT * FROM blogpost WHERE userId = ?";
-        List<Blogpost> blogpostList = jdbc.query(SELECT_BLOGPOST_BY_USER_ID, new BlogpostDaoDB.BlogpostMapper(), id);
+        List<Blogpost> blogpostList = jdbc.query(SELECT_BLOGPOST_BY_USER_ID, new BlogPostDAOImpl.BlogpostMapper(), id);
         for (Blogpost blogpost : blogpostList) {
             final String DELETE_BLOGPOST_HASHTAG = "DELETE FROM blogpost_hashtag WHERE blogpostId = ?";
             jdbc.update(DELETE_BLOGPOST_HASHTAG, blogpost.getBlogpostId());
@@ -113,7 +113,7 @@ public class UserDaoDB implements UserDao {
         final String SELECT_ROLE_BY_USER_ID = "SELECT r.* FROM \"ROLE\" r " +
                 "JOIN user_role ur ON r.roleId = ur.roleId " +
                 "WHERE ur.userId = ?";
-        return jdbc.query(SELECT_ROLE_BY_USER_ID, new RoleDaoDB.RoleMapper(), userId);
+        return jdbc.query(SELECT_ROLE_BY_USER_ID, new RoleDAOImpl.RoleMapper(), userId);
     }
 
     private void associateUserRole(List<User> userList) {
