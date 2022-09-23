@@ -13,9 +13,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
     <title>Search Post</title>
 </head>
-<body>
+<body style="background-color: #353535">
 <!--top nav bar-->
-<nav class="navbar fixed-top navbar-light navbar-expand-lg" style="background-color: #e3f2fd;">
+<nav class="navbar fixed-top navbar-light navbar-expand-lg" style="background-color: #FF6961;">
 
     <!--    fixed-top-->
     <div class="container">
@@ -127,7 +127,7 @@
         <!-- Blogposts -->
         <div class="col-md-8">
 
-            <h1 class="my-4">
+            <h1 class="my-4" style="color: white">
                 <small>Search Results</small>
             </h1>
             <div th:each="blog : ${blogpostsForTagList}">
@@ -146,7 +146,7 @@
         </div>
 
         <!-- hashtag widget -->
-        <div class="col-md-4">
+        <div class="col-md-4" style="color: white">
             <h1 class="my-4" style="margin-bottom: 10px;">
                 <small>Categories</small>
             </h1>

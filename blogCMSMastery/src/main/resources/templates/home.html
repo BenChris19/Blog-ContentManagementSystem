@@ -12,24 +12,23 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
     <title>Home</title>
-    <meta name="description" content="Yoga Blog App" />
-    <meta name="title" property="og:title" content="Yoga Blog" />
+    <meta name="description" content="Sports Club Blog" />
+    <meta name="title" property="og:title" content="Sports Club Blog" />
     <meta property="og:type" content="Website" />
-    <meta name="image" property="og:image" content="https://live.staticflickr.com/65535/50714514528_32e1eb461f_z.jpg" />
-    <meta name="description" property="og:description" content="Yoga Blog" />
-    <meta name="author" content="Kristina Zakharova" />
+    <meta name="description" property="og:description" content="Sports Club Blog" />
+    <meta name="author" content="Scott, Yu, Tudor, Aidan, Benat, Tamas, Silviu, Eneinta, Sreedevi" />
 </head>
-<body>
-<!--top nav bar-->
-<nav class="navbar fixed-top navbar-light navbar-expand-lg" style="background-color: #e3f2fd;">
+<body style="background-color: #353535">
+<!-- nav bar-->
+<nav class="navbar fixed-top navbar-light navbar-expand-lg" style="background-color: #FF6961">
 
-    <!--    fixed-top-->
+
     <div class="container">
-        <!--        logo-->
+
         <a class="navbar-brand" href="#" th:href="@{/home}">
             <img width="100px" src="images/logo.png" style="display:inline; padding: 0; margin: 0;"/>
         </a>
-        <!--        end logo-->
+
         <!--        Search form-->
         <form action="searchPost" method="GET">
             <input type="hidden"
@@ -46,7 +45,7 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" href="home">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
+        <div class="collapse navbar-collapse" id="navbarResponsive" style="color: white">
             <ul class="navbar-nav ml-auto" href="#">
 
                 <!--                static pages display-->
@@ -131,15 +130,17 @@
 <!--    content-->
 <div class="container" style="margin-bottom:200px;">
     <div class="row">
-
-        <div class="col-md-12">
-            <img width="100%" src="images/yogaMainWelcome.png" alt="main photo welcome" style="margin-top: 75px;"/>
+		<h1 align="center" style="margin-top: 18vh; margin-left: 30%; color: white;">Welcome to the Sports Blog!</h1>
+        <div class="col-md-12" style="margin-top: 1vh;">
+			<img width="100%" style="margin-top: 75px;" class="mySlides" src="images/yu.jpg"> <!-- ../static/images/yu.jpg -->
+			<img width="100%" style="margin-top: 75px;" class="mySlides" src="images/yu_2.jpg">
+			<img width="100%" style="margin-top: 75px;" class="mySlides" src="images/yu_3.jpg">
         </div>
 
         <!-- Blogposts Column -->
         <div class="col-md-8">
             <h1 class="my-4">
-                <small>Blogposts</small>
+                <small style="color: white">Blogposts</small>
             </h1>
             <div th:each="blog : ${blogList}">
 
@@ -151,7 +152,7 @@
                         <a class="btn btn-outline-secondary stretched-link" th:href="@{/post(id=${blog.blogpostId})}">Read Post &rarr;</a>
                     </div>
                     <div class="card-footer text-muted">
-                        <span th:text="${#temporals.format(blog.timePosted, 'MM-dd-yyyy HH:mm')}">Posted on January 1, 2020 by</span> by
+                        <span th:text="${#temporals.format(blog.timePosted, 'MM-dd-yyyy HH:mm')}">Posted on January 1, 2022 by</span>
                         <span th:text="${blog.user.firstName}">Start Bootstrap</span>
                     </div>
                 </div>
@@ -162,17 +163,30 @@
         <!-- hashtag widget -->
         <div class="col-md-4">
             <h1 class="my-4" style="margin-bottom: 10px;">
-                <small>Categories</small>
+                <small style="color: white">Categories</small>
             </h1>
             <div class="list-group sticky-top" th:each="tag : ${tagList}">
                 <a href="#" class="list-group-item list-group-item-action text-center" th:href="@{/searchPostByCategory(tagId=${tag.hashtagId})}" th:text="${tag.name}">Category</a>
             </div>
         </div>
-        <!--            end hashtag widget-->
     </div>
-    <!-- /.row -->
 </div>
+<script>
+var slideIndex = 0;
+carousel();
 
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > x.length) {slideIndex = 1}
+  x[slideIndex-1].style.display = "block";
+  setTimeout(carousel, 2000);
+}
+</script>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

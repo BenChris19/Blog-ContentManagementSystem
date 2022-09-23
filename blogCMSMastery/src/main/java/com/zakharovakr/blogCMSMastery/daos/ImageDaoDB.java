@@ -20,7 +20,6 @@ public class ImageDaoDB implements ImageDao {
     ImageFolder imageFolder = new ImageFolder();
 
     private final String RESOURCE_ROOT = imageFolder.getRESOURCE_ROOT();
-//    private final String RESOURCE_ROOT = "C:/Users/Shazena/Documents/GITHUB/DDWAM4A-SuperheroSightings/SuperheroSightings/src/main/resources/static/";
 
     private final String UPLOAD_DIRECTORY = "images/uploads/";
 

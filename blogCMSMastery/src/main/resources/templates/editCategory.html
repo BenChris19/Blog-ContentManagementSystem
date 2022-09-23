@@ -14,9 +14,9 @@
     <!--icon-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
 </head>
-<body>
+<body style="background-color: #353535">
 <!--top nav bar-->
-<nav class="navbar fixed-top navbar-light navbar-expand-lg" style="background-color: #e3f2fd;">
+<nav class="navbar fixed-top navbar-light navbar-expand-lg" style="background-color: #FF6961;">
 
     <!--    fixed-top-->
     <div class="container">
@@ -138,7 +138,7 @@
                 <form action="editCategory" method="POST">
                     <div class="form-group row">
                         <label for="name" class="col-4 col-form-label">
-                            <span class="m-4">Add Category (#hashtag)</span>
+                            <span class="m-4" style="color: white">Add Category (#hashtag)</span>
                         </label>
                         <div class="col-5">
                             <input type="text" name="name" id="name" class="form-control" th:value="${hashtag.name}"/>
