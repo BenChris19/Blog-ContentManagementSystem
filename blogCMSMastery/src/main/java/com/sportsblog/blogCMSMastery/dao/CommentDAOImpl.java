@@ -15,7 +15,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-//not really using this - only displaying comments under some posts
+/**
+ * 
+ * 
+ * @author Eneinta Veliai
+ * */
 @Repository
 public class CommentDAOImpl implements CommentDAO {
 

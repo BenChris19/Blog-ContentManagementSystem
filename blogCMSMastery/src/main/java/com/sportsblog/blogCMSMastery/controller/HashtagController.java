@@ -21,6 +21,11 @@ import javax.validation.Validator;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * 
+ * 
+ * @author Aidan Loughran, Yu Lee 
+ * */
 @Controller
 public class HashtagController {
     @Autowired
@@ -38,35 +43,19 @@ public class HashtagController {
     @Autowired
     CommentDAO commentDao;
 
-    @GetMapping("/categoryManager")
-    public String displayCategoryManager (Model model) {
-        //set up nav bar
-        List<Blogpost> staticList = blogpostDao.getBlogpostByType("static");
-        model.addAttribute("staticList", staticList);
-
-        List<Hashtag> tagList = hashtagDao.readAllHashtags();
-        model.addAttribute("tagList", tagList);
-
-        return "categoryManager";
-    }
-
-
     @PostMapping("/createCategory")
     public String createTag (HttpServletRequest request, Model model) {
-        //set up tag table
         List<Hashtag> tagList = hashtagDao.readAllHashtags();
         model.addAttribute("tagList", tagList);
 
         Hashtag tag = new Hashtag();
         tag.setName(request.getParameter("tag"));
 
-        //validation
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
         Set<ConstraintViolation<Hashtag>> errors = validate.validate(tag);
         model.addAttribute("errors", errors);
 
         if (!errors.isEmpty()) {
-            //set up nav bar
             List<Blogpost> staticList = blogpostDao.getBlogpostByType("static");
             model.addAttribute("staticList", staticList);
 
@@ -77,10 +66,20 @@ public class HashtagController {
 
         return "redirect:/categoryManager";
     }
+    
+    @GetMapping("/categoryManager")
+    public String displayCategoryManager (Model model) {
+        List<Blogpost> staticList = blogpostDao.getBlogpostByType("static");
+        model.addAttribute("staticList", staticList);
+
+        List<Hashtag> tagList = hashtagDao.readAllHashtags();
+        model.addAttribute("tagList", tagList);
+
+        return "categoryManager";
+    }
 
     @GetMapping("/editCategory")
     public String editCategory(HttpServletRequest request, Model model) {
-        //set up nav bar
         List<Blogpost> staticList = blogpostDao.getBlogpostByType("static");
         model.addAttribute("staticList", staticList);
 
@@ -99,14 +98,12 @@ public class HashtagController {
         Hashtag hashtag = hashtagDao.readHashtagById(tagId);
         hashtag.setName(request.getParameter("name"));
 
-        //validation
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
         Set<ConstraintViolation<Hashtag>> errors = validate.validate(hashtag);
         model.addAttribute("errors", errors);
 
         if (!errors.isEmpty()) {
 
-            //set up nav bar
             List<Blogpost> staticList = blogpostDao.getBlogpostByType("static");
             model.addAttribute("staticList", staticList);
 
@@ -127,7 +124,6 @@ public class HashtagController {
         int id = Integer.parseInt(request.getParameter("id"));
         hashtagDao.deleteHashtag(id);
 
-        //set up tag table
         List<Hashtag> tagList = hashtagDao.readAllHashtags();
         model.addAttribute("tagList", tagList);
 

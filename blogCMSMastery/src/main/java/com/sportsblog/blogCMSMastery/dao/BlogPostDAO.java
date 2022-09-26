@@ -6,6 +6,11 @@ import com.sportsblog.blogCMSMastery.dto.Blogpost;
 import com.sportsblog.blogCMSMastery.dto.Hashtag;
 import com.sportsblog.blogCMSMastery.dto.User;
 
+/**
+ * 
+ * 
+ * @author Scott Hollas, Tamas Maul
+ * */
 public interface BlogPostDAO {
     public Blogpost createBlogpost (Blogpost blogpost);
     

@@ -14,6 +14,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * 
+ * 
+ * @author Aidan Loughran, Yu Lee 
+ * */
 @Repository
 public class HashtagDAOImpl implements HashtagDAO {
     @Autowired

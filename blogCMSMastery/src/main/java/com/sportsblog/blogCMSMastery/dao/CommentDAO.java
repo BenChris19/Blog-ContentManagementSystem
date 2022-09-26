@@ -6,6 +6,11 @@ import com.sportsblog.blogCMSMastery.dto.Blogpost;
 import com.sportsblog.blogCMSMastery.dto.Comment;
 import com.sportsblog.blogCMSMastery.dto.User;
 
+/**
+ * 
+ * 
+ * @author Eneinta Veliai
+ * */
 public interface CommentDAO {
     public Comment createComment (Comment comment);
     

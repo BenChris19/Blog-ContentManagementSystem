@@ -25,6 +25,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * 
+ * 
+ * @author Tudor Coroian, Sreedevi Suresh
+ * */
 @Controller
 public class UserController {
     @Autowired
@@ -41,36 +46,7 @@ public class UserController {
 
     @Autowired
     CommentDAO commentDao;
-
-    @GetMapping("/userManager")
-    public String displayUserManager(Model model) {
-        //set up nav bar
-        List<Blogpost> staticList = blogpostDao.getBlogpostByType("static");
-        model.addAttribute("staticList", staticList);
-
-        //set up user list
-        List<User> userList = userDao.readAllUsers();
-        model.addAttribute("userList", userList);
-
-        return "userManager";
-    }
-
-    @GetMapping("/createUser")
-    public String displayCreateUser(HttpServletRequest request, Model model) {
-        //set up nav bar
-        List<Blogpost> staticList = blogpostDao.getBlogpostByType("static");
-        model.addAttribute("staticList", staticList);
-
-        //set up form
-        List<Role> roleList = roleDao.readAllRoles();
-        model.addAttribute("roleList", roleList);
-
-        String url = request.getHeader("referer");
-        model.addAttribute("returnPage", url);
-
-        return "createUser";
-    }
-
+    
     @PostMapping("/createUser")
     public String performCreateUser(HttpServletRequest request, Model model) {
         User user = new User();
@@ -79,13 +55,12 @@ public class UserController {
         user.setLastName(request.getParameter("lastName"));
         user.setEmail(request.getParameter("email"));
 
-        //set password
         String rawPassword = request.getParameter("password");
         String encodedPassword = encodingPassword(rawPassword);
         if ( encodedPassword != user.getPassword()) {
             user.setPassword(encodedPassword);
         }
-        //set role
+
         List<Role> allRole = roleDao.readAllRoles();
         List<Role> roleList = new ArrayList<>();
         for (Role role : allRole) {
@@ -97,17 +72,14 @@ public class UserController {
         user.setRoles(roleList);
         user.setEnable(true);
 
-        //validation
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
         Set<ConstraintViolation<User>> errors = validate.validate(user);
         model.addAttribute("errors", errors);
 
         if (!errors.isEmpty()) {
-            //set up nav bar
             List<Blogpost> staticList = blogpostDao.getBlogpostByType("static");
             model.addAttribute("staticList", staticList);
 
-            //set up form
             roleList = roleDao.readAllRoles();
             model.addAttribute("roleList", roleList);
 
@@ -124,24 +96,45 @@ public class UserController {
 
         return toReturn;
     }
-
-    @GetMapping("/editUser")
-    public String editUser(HttpServletRequest request, Model model){
-        //set up nav bar
+    
+    @GetMapping("/createUser")
+    public String displayCreateUser(HttpServletRequest request, Model model) {
         List<Blogpost> staticList = blogpostDao.getBlogpostByType("static");
         model.addAttribute("staticList", staticList);
 
-        //set up pre filled form
+        List<Role> roleList = roleDao.readAllRoles();
+        model.addAttribute("roleList", roleList);
+
+        String url = request.getHeader("referer");
+        model.addAttribute("returnPage", url);
+
+        return "createUser";
+    }
+
+    @GetMapping("/userManager")
+    public String displayUserManager(Model model) {
+        List<Blogpost> staticList = blogpostDao.getBlogpostByType("static");
+        model.addAttribute("staticList", staticList);
+
+        List<User> userList = userDao.readAllUsers();
+        model.addAttribute("userList", userList);
+
+        return "userManager";
+    }
+
+    @GetMapping("/editUser")
+    public String editUser(HttpServletRequest request, Model model){
+        List<Blogpost> staticList = blogpostDao.getBlogpostByType("static");
+        model.addAttribute("staticList", staticList);
+
         List<Role> roleList = roleDao.readAllRoles();
         model.addAttribute("roleList", roleList);
 
         if(request.getParameter("id") != null) {
-            //This is use when direct from userManager
             int id = Integer.parseInt(request.getParameter("id"));
             User user = userDao.readUserById(id);
             model.addAttribute("user", user);
         } else {
-            //This is use when direct from editProfile
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             String userName = auth.getName();
             User user = userDao.getUserByUsername(userName);
@@ -162,17 +155,16 @@ public class UserController {
         user.setLastName(request.getParameter("lastName"));
         user.setEmail(request.getParameter("email"));
 
-        //set password
         String rawPassword = request.getParameter("password");
         String currentPassword = user.getPassword();
         if ( !rawPassword.equals(currentPassword)) {
             String encodedPassword = encodingPassword(rawPassword);
             user.setPassword(encodedPassword);
         }
-        //set role
+
         List<Role> roleList = new ArrayList<>();
         try{
-            String[] roleIdList = request.getParameterValues("role"); // if not admin this will crash
+            String[] roleIdList = request.getParameterValues("role");
             for (String roleId : roleIdList) {
                 int id = Integer.parseInt(roleId);
                 Role role = roleDao.readRoleById(id);
@@ -187,17 +179,14 @@ public class UserController {
             user.setEnable(enable);
         }
 
-        //validation
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
         Set<ConstraintViolation<User>> errors = validate.validate(user);
         model.addAttribute("errors", errors);
 
         if (!errors.isEmpty()) {
-            //set up nav bar
             List<Blogpost> staticList = blogpostDao.getBlogpostByType("static");
             model.addAttribute("staticList", staticList);
 
-            //set up form
             roleList = roleDao.readAllRoles();
             model.addAttribute("roleList", roleList);
 
@@ -207,7 +196,6 @@ public class UserController {
         }
         userDao.updateUser(user);
 
-        //setup where to return to
         String returnPageStr = request.getParameter("returnPage");  //page before editing
         String returnPage = returnPageStr.substring(21, returnPageStr.length());
         String toReturn = "redirect:" + returnPage;
@@ -225,7 +213,6 @@ public class UserController {
 
     private String encodingPassword(String password) {
         String clearTxtPw = password;
-        // BCrypt
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String hashedPw = encoder.encode(clearTxtPw);
         return hashedPw;

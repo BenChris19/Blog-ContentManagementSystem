@@ -11,6 +11,11 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+/**
+ * 
+ * 
+ * @author Aidan Loughran, Yu Lee 
+ * */
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter

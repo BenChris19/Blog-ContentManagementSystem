@@ -11,6 +11,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * 
+ * 
+ * @author Eneinta Veliai
+ * */
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter

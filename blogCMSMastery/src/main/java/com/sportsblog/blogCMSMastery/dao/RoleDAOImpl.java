@@ -13,6 +13,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * 
+ * 
+ * @author Benat Underwood
+ * */
 @Repository
 public class RoleDAOImpl implements RoleDAO {
     @Autowired

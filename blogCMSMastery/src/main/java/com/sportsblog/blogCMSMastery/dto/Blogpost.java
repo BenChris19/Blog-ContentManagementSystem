@@ -14,6 +14,11 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * 
+ * 
+ * @author Scott Hollas, Tamas Maul
+ * */
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter

@@ -4,6 +4,11 @@ import java.util.List;
 
 import com.sportsblog.blogCMSMastery.dto.Role;
 
+/**
+ * 
+ * 
+ * @author Benat Underwood
+ * */
 public interface RoleDAO {
     public Role createRole (Role role);
     

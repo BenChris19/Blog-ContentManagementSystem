@@ -15,6 +15,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * 
+ * 
+ * @author Tudor Coroian, Sreedevi Suresh
+ * */
 @Repository
 public class UserDAOImpl implements UserDAO {
 
@@ -26,7 +31,7 @@ public class UserDAOImpl implements UserDAO {
     public User createUser(User user) {
         final String INSERT_USER = "INSERT INTO USERS (userName, userPassword, firstName, lastName, email, isActive) VALUES (?,?,?,?,?,?)";
         jdbc.update(INSERT_USER, user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(), user.getEmail(), user.isEnable());
-        int newId = jdbc.queryForObject("SELECT LAST()", Integer.class);//change to lastval() is cannot add new users
+        int newId = jdbc.queryForObject("SELECT LAST()", Integer.class);//change to lastval() if cannot add new users
         user.setUserId(newId);
         insertIntoUserRole(user);
         return user;

@@ -14,6 +14,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
+/**
+ * 
+ * 
+ * @author Yu Lee
+ * */
 @Controller
 public class LoginController {
     @Autowired
@@ -33,7 +38,6 @@ public class LoginController {
 
     @GetMapping("/login")
     public String showLoginForm(Model model) {
-        //set up nav bar
         List<Blogpost> staticList = blogpostDao.getBlogpostByType("static");
         model.addAttribute("staticList", staticList);
         return "login";

@@ -3,7 +3,11 @@ package com.sportsblog.blogCMSMastery.controller;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-//not using this
+/**
+ * 
+ * 
+ * @author Silviu Badica
+ * */
 public class CustomErrorController implements ErrorController {
 
     private static final String PATH = "/error";

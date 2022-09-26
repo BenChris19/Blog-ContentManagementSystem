@@ -5,6 +5,11 @@ import java.util.List;
 import com.sportsblog.blogCMSMastery.dto.Role;
 import com.sportsblog.blogCMSMastery.dto.User;
 
+/**
+ * 
+ * 
+ * @author Tudor Coroian, Sreedevi Suresh
+ * */
 public interface UserDAO {
     public User createUser (User user);
     

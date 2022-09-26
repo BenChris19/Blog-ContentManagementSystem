@@ -35,15 +35,12 @@ public class HomeController {
 
     @GetMapping({"/", "/home"})
     public String displayHomePage(Model model) {
-        //set up nav bar (with static pages)
         List<Blogpost> staticList = blogpostDao.getBlogpostByType("static");
         model.addAttribute("staticList", staticList);
 
-        //set up post list
         List<Blogpost> blogList = blogpostDao.getBlogpostByType("blog");
         model.addAttribute("blogList", blogList);
 
-        //set hashtag side menu
         List<Hashtag> tagList = hashtagDao.readAllHashtags();
         model.addAttribute("tagList", tagList);
 
